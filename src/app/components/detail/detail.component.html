@@ -1,0 +1,40 @@
+<!---->
+<mat-card *ngFor="let cat of Cats">
+    <mat-card-header>
+        <mat-card-title>{{cat.name}}</mat-card-title>
+        <mat-card-subtitle>{{cat.color}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-button>Edit</button>
+        <button mat-button>Delete</button>
+    </mat-card-actions>
+</mat-card>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Add a Cat</mat-card-title>
+    </mat-card-header>
+    <mat-form-field>
+        <input matInput [(ngModel)]="NewCat.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="NewCat.color" placeholder="Color">
+    </mat-form-field>
+    <mat-card-actions>
+        <button mat-button (click)="AddCat()">Save</button>
+    </mat-card-actions>
+</mat-card>
+{{NewCat.name}} {{NewCat.color}}
+<!-- <mat-accordion>
+    <mat-expansion-panel *ngFor="let cat of Cats">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{cat.name}}</mat-panel-title>
+            <mat-panel-description>{{cat.color}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+            <input matInput [(ngModel)]="cat.name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="cat.color">
+        </mat-form-field>
+    </mat-expansion-panel>
+</mat-accordion> -->
