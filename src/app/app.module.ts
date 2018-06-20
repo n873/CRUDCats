@@ -7,13 +7,13 @@ import { AppComponent } from './components/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
@@ -43,9 +43,10 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    MatCardModule, MatButtonModule, MatExpansionModule,
+    MatCardModule, MatButtonModule,
     MatInputModule, MatIconModule, MatSnackBarModule,
-    MatDividerModule, MatListModule, MatDialogModule
+    MatDividerModule, MatListModule, MatDialogModule,
+    MatToolbarModule
   ],
   entryComponents: [EditComponent],
   providers: [CatService, Globals],
