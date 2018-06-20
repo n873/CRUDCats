@@ -1,0 +1,11 @@
+mat-card {
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+mat-card * {
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}

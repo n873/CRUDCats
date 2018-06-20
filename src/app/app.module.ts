@@ -11,12 +11,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { HomeComponent } from './components/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
-import { CatSnackBarComponent } from './components/catsnackbar/catsnackbar.component';
 
 import { Globals } from './globals/cat.globals';
 import { CatService } from './services/cat.service';
@@ -33,8 +35,7 @@ const appRoutes: Routes = [
     HomeComponent,
     DetailComponent,
     CreateComponent,
-    EditComponent,
-    CatSnackBarComponent
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -43,8 +44,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     MatCardModule, MatButtonModule, MatExpansionModule,
-    MatInputModule, MatIconModule, MatSnackBarModule
+    MatInputModule, MatIconModule, MatSnackBarModule,
+    MatDividerModule, MatListModule, MatDialogModule
   ],
+  entryComponents: [EditComponent],
   providers: [CatService, Globals],
   bootstrap: [AppComponent]
 })

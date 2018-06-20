@@ -1,3 +1,22 @@
-<p>
-  create works!
-</p>
+<mat-card>
+    <button mat-button color="primary" id='DisplayAddCatSectionButton' (click)="DisplayAddCat()">
+    Add a Cat
+    <mat-icon>expand_more</mat-icon>
+  </button>
+    <mat-card-content *ngIf="addCatVisible">
+        <mat-form-field>
+            <input matInput [(ngModel)]="NewCat.name" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="NewCat.color" placeholder="Color">
+        </mat-form-field>
+        <button mat-button color="primary" (click)="AddCat()">
+      Save
+      <mat-icon>save</mat-icon>
+    </button>
+        <button mat-button color="warn" (click)="HideAddCat()">
+            cancel
+            <mat-icon>cancel</mat-icon>
+          </button>
+    </mat-card-content>
+</mat-card>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CatService } from '../../services/cat.service';
 import { Cat } from '../../models/cat';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CatSnackBarComponent } from '../catsnackbar/catsnackbar.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-detail',
@@ -13,8 +14,8 @@ import { CatSnackBarComponent } from '../catsnackbar/catsnackbar.component';
 export class DetailComponent implements OnInit {
 
   Cats: Cat[];
-  NewCat: Cat = new Cat();
-  constructor(public snackBar: MatSnackBar, public catService: CatService) { }
+  constructor(public snackBar: MatSnackBar
+    , public catService: CatService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.LoadCats();
@@ -24,20 +25,36 @@ export class DetailComponent implements OnInit {
     this.Cats = this.catService.GetCats();
   }
 
-  AddCat() {
-    if (this.NewCat.name !== '' && this.NewCat.color !== '') {
-      this.catService.AddCat(this.NewCat);
-      this.NewCat = new Cat();
-      this.OpenSnackBar();
+  DeleteCat(cat: Cat) {
+    if (cat !== null) {
+      const catIndex = this.Cats.findIndex(item => item.name === cat.name);
+      this.Cats.splice(catIndex, 1);
+      this.OpenSnackBar('Cat deleted');
       this.LoadCats();
     }
   }
 
-  DeleteCat() {
+  UpdateCat(selectedCat: Cat): void {
+    if (selectedCat !== null) {
+      const dialogResult = this.dialog.open(EditComponent, {
+        width: '250px',
+        data: { cat: selectedCat }
+      });
 
+      dialogResult.afterClosed().subscribe(updatedCat => {
+        if (updatedCat != null &&
+          updatedCat.name != '' && updatedCat.name != null
+          && updatedCat.color != '' && updatedCat.name != null) {
+            const selectedIndex = this.Cats.indexOf(selectedCat);
+            this.Cats[selectedIndex] = updatedCat;
+      } else { this.snackBar.open('Oops, looks like that cat is missing something'); }
+    });
+    }
   }
 
-  private OpenSnackBar() {
-    this.snackBar.openFromComponent(CatSnackBarComponent, { duration: 400});
+  OpenSnackBar(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
+    });
   }
 }

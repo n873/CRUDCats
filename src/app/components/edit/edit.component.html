@@ -1,3 +1,16 @@
-<p>
-  edit works!
-</p>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="selectedCat.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="selectedCat.color" placeholder="Color">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="OnNoClick()" color="warn">cancel
+        <mat-icon>cancel</mat-icon>
+    </button>
+    <button mat-button [mat-dialog-close]="selectedCat" color="primary" cdkFocusInitial>Save
+            <mat-icon>save</mat-icon>
+        </button>
+</div>
